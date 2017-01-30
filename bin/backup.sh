@@ -17,7 +17,7 @@ then
   echo "I am ready to backup /volumes ( ͡° ͜ʖ ͡°)"
 else
   echo "/volumes is empty nothing to backup"
-  exit 1
+  exit 0
 fi
 
 #init volume if not exist 
