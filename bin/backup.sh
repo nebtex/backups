@@ -45,8 +45,10 @@ function check_remote {
        echo "    $(tput setaf 2)✓$(tput sgr0) remote repo ok"
        return 0 
    else
-       rclone --verbose --include "/config" check $LOCAL_REPOSITORY $remote_repo || \
-       echo "$(tput setaf 1)                       
+       if rclone --verbose --include "/config" check $LOCAL_REPOSITORY $remote_repo; then
+            echo "    private key check passed $(tput setaf 3)(*•̀ᴗ•́*)و$(tput sgr0)"
+       else     
+            echo "$(tput setaf 1)                       
       #############                         #############
     ##            *##                     ##############*##
    #               **#                   ################**#
@@ -63,9 +65,8 @@ function check_remote {
       | | | | | | |                         | | | | | | |
 
 "
-
        echo "    Danger!!: the private keys does not match (︶︹︺), this can delete all your data please fix the issues$(tput sgr0)" && exit 1
-       echo "    private key check passed $(tput setaf 3)(*•̀ᴗ•́*)و$(tput sgr0)"
+     fi
    fi
 } 
 
