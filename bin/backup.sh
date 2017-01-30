@@ -65,7 +65,8 @@ function check_remote {
       | | | | | | |                         | | | | | | |
 
 "
-       echo "    Danger!!: the private keys does not match (︶︹︺), this can delete all your data please fix the issues$(tput sgr0)" && exit 1
+          echo "    Danger!!: the private keys does not match (︶︹︺), this can delete all your data please fix the issues$(tput sgr0)"
+          exit 1
      fi
    fi
 } 
