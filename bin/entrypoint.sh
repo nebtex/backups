@@ -1,7 +1,8 @@
 #!/usr/bin/dumb-init /bin/bash
 set -e
 
-#ntpdate -q pool.ntp.org
+ntpdate -q pool.ntp.org
+sleep 15
 
 #initi sys log
 rsyslogd
@@ -34,11 +35,8 @@ if  [ "$CONSUL_HTTP_ADDR" == "" ]; then
     rclone_file=/root/.rclone.conf
 
     cp /templates/default-rclone.conf $rclone_file
-    echo "s@AWS_ACCESS_KEY_ID@${AWS_ACCESS_KEY_ID}@"
     sed -Ei "s@AWS_ACCESS_KEY_ID@${AWS_ACCESS_KEY_ID}@" $rclone_file
-    echo "s@AWS_SECRET_ACCESS_KEY@${AWS_SECRET_ACCESS_KEY}@"
     sed -Ei "s@AWS_SECRET_ACCESS_KEY@${AWS_SECRET_ACCESS_KEY}@" $rclone_file
-    echo "s@AWS_REGION@${AWS_REGION}@"
     sed -Ei "s@AWS_REGION@${AWS_REGION}@" $rclone_file
 fi
 
