@@ -21,7 +21,7 @@ else
 fi
 
 #init volume if not exist 
-$configFile = "$LOCAL_REPOSITORYconfig"
+configFile="$LOCAL_REPOSITORYconfig"
 if [ -f $configFile ]
 then
   echo "repo already exists ...."
