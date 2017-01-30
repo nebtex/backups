@@ -1,11 +1,9 @@
 #!/usr/bin/dumb-init /bin/bash
-
 export BORG_PASSPHRASE=`cat /etc/borg_passphrase`
 BACKUP_PATH=`cat /etc/backup_path`
 LOCAL_REPOSITORY=/borg/
 
 IFS=':' read -r -a ALL_REMOTES <<< "$(rclone listremotes | tr -d '[:space:]')"
-
 
 function download_to_local {
    local prefix=`cat /etc/$1_prefix`
@@ -26,10 +24,12 @@ do
   fi
 done
 
-# restore latest backup
-backups=($(borg list /borg))
-
-borg extract /borg::${backups[-4]}
-
-echo "$(tput setaf 3)❃ႣᄎႣ❃$(tput sgr0)  restore is done, enjoy !!! $(tput setaf 3)❃ႣᄎႣ❃$(tput sgr0)"
-exit 0
+if [ -n "$(ls -A /borg)" ]
+then
+  # restore latest backup
+  backups=($(borg list /borg))
+  borg extract /borg::${backups[-4]}
+  echo "$(tput setaf 3)❃ႣᄎႣ❃$(tput sgr0)  restore is done, enjoy !!! $(tput setaf 3)❃ႣᄎႣ❃$(tput sgr0)"
+else
+  echo "/borg is empty nothing to restore"
+fi

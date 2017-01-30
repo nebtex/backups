@@ -27,7 +27,6 @@ if  [ "$CONSUL_HTTP_ADDR" == "" ]; then
     [ -z $AWS_BUCKET ] && { echo "Need to set AWS_BUCKET"; exit 1; }
     [ -z $BORG_PASSPHRASE ] && { echo "Need to set  BORG_PASSPHRASE"; exit 1; }
     [ -z $AWS_ACCESS_KEY_ID ] && { echo "Need to set  AWS_ACCESS_KEY_ID"; exit 1; }
-    [ -z $AWS_ACCESS_KEY_ID ] && { echo "Need to set  AWS_ACCESS_KEY_ID"; exit 1; }
     [ -z $AWS_SECRET_ACCESS_KEY ] && { echo "Need to set  AWS_SECRET_ACCESS_KEY"; exit 1; }
     [ -z $AWS_REGION ] && { echo "Need to set  AWS_REGION"; exit 1; }
     printf $AWS_BUCKET > /etc/default_prefix
