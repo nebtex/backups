@@ -45,7 +45,7 @@ function check_remote {
        echo "    $(tput setaf 2)✓$(tput sgr0) remote repo ok"
        return 0 
    else
-       rclone --include "/config" check $LOCAL_REPOSITORY $remote_repo || \
+       rclone --verbose --include "/config" check $LOCAL_REPOSITORY $remote_repo || \
        echo "$(tput setaf 1)                       
       #############                         #############
     ##            *##                     ##############*##
