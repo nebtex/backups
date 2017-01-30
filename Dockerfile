@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 WORKDIR /tmp
 
 ENV LANG C.UTF-8
+ENV TERM xterm-256color
 
 RUN apt-get update -y && apt-get install --no-install-recommends \
     wget unzip borgbackup gawk cron git python-pip rsyslog ntpdate -y
