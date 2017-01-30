@@ -21,13 +21,7 @@ else
 fi
 
 #init volume if not exist 
-configFile="$LOCAL_REPOSITORYconfig"
-if [ -f $configFile ]
-then
-  echo "repo already exists ...."
-else
-  borg init $LOCAL_REPOSITORY
-fi
+borg init $LOCAL_REPOSITORY || true
 
 IFS=':' read -r -a ALL_REMOTES <<< "$(rclone listremotes | tr -d '[:space:]')"
 declare -a APPROVED_REMOTES
@@ -47,7 +41,7 @@ function check_remote {
        echo "    $(tput setaf 2)✓$(tput sgr0) remote repo ok"
        return 0 
    else
-       if rclone --verbose --include "/config" check $LOCAL_REPOSITORY $remote_repo; then
+       if rclone --include "/config" check $LOCAL_REPOSITORY $remote_repo; then
             echo "    private key check passed $(tput setaf 3)(*•̀ᴗ•́*)و$(tput sgr0)"
        else     
             echo "$(tput setaf 1)                       
