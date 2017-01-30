@@ -66,7 +66,7 @@ else
     crontab='/tmp/crontab'
     cp /templates/crontab $crontab
     CRON_TIME=$1
-    sed -Ei "s@CRON_TIME@${CRON_TIME}@ root" $crontab
+    sed -Ei "s@CRON_TIME@${CRON_TIME} root@" $crontab
     chkcrontab $crontab
     sed -Ei "s@ root@@" $crontab
     echo "cron is correct !!"
