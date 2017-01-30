@@ -21,10 +21,12 @@ else
 fi
 
 #init volume if not exist 
-if [ -d "$LOCAL_REPOSITORY" ]; then
-    echo "repo already exists ...."
+$configFile = "$LOCAL_REPOSITORYconfig"
+if [ -f $configFile ]
+then
+  echo "repo already exists ...."
 else
-    borg init $LOCAL_REPOSITORY
+  borg init $LOCAL_REPOSITORY
 fi
 
 IFS=':' read -r -a ALL_REMOTES <<< "$(rclone listremotes | tr -d '[:space:]')"
