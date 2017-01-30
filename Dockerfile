@@ -1,0 +1,42 @@
+FROM ubuntu:16.04
+
+WORKDIR /tmp
+
+ENV LANG C.UTF-8
+
+RUN apt-get update -y && apt-get install --no-install-recommends \
+    wget unzip borgbackup gawk cron git python-pip rsyslog ntpdate -y
+
+## install dumb-init
+RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb
+RUN dpkg -i dumb-init_*.deb
+
+##install jq
+RUN wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+RUN cp jq-linux64 /bin/jq
+RUN chmod +x /bin/jq
+
+## install consul-template
+RUN wget https://releases.hashicorp.com/consul-template/0.18.0-rc2/consul-template_0.18.0-rc2_linux_amd64.zip
+RUN unzip consul-template_0.18.0-rc2_linux_amd64.zip
+RUN cp consul-template /bin/consul-template
+RUN chmod +x /bin/consul-template
+
+## install crontab checker 
+RUN git clone https://github.com/lyda/chkcrontab.git
+RUN cd chkcrontab; python setup.py install 
+
+RUN wget http://downloads.rclone.org/rclone-v1.35-linux-amd64.zip
+RUN unzip rclone-v1.35-linux-amd64.zip
+RUN mv rclone-v1.35-linux-amd64/rclone /bin/rclone
+
+RUN mkdir -p /volumes
+WORKDIR /
+RUN rm -rf /tmp/*
+ADD bin /bin/
+ADD templates /templates
+RUN chmod +x -R /bin
+
+VOLUME /volumes
+
+ENTRYPOINT ["/bin/entrypoint.sh"]

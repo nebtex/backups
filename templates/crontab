@@ -1,0 +1,2 @@
+CRON_TIME root /bin/backup.sh
+
