@@ -8,6 +8,7 @@ ENV TERM xterm-256color
 RUN apt-get update -y && apt-get install --no-install-recommends \
     wget unzip borgbackup gawk cron git python-pip rsyslog ntpdate -y
 
+ntpdate -q 2.pool.ntp.org
 ## install dumb-init
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb
 RUN dpkg -i dumb-init_*.deb

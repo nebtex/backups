@@ -1,7 +1,6 @@
 #!/usr/bin/dumb-init /bin/bash
 set -e
 
-ntpdate -q pool.ntp.org
 sleep 15
 
 #initi sys log
