@@ -32,6 +32,8 @@ if ! [ "$FileCount" == "0" ]; then
   exit 0
 fi
 
+rm -rf /borg/lost+found
+
 if [ -n "$(ls -A /borg)" ]
 then
   # restore latest backup
