@@ -24,6 +24,14 @@ do
   fi
 done
 
+
+FileCount=$(find /volumes -type f | wc -l)
+echo "/volumes has $FileCount files"
+if ! [ "$FileCount" == "0" ]; then 
+  echo "Leaving the /volumes path has files in it, you need to run a manual restore"
+  exit 0
+fi
+
 if [ -n "$(ls -A /borg)" ]
 then
   # restore latest backup
