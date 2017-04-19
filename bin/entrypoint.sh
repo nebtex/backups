@@ -5,6 +5,7 @@ sleep 15
 
 #initi sys log
 rsyslogd
+rm -rf /borg/lock.exclusive
 
 if [ "$BACKUP_PATH" == "" ]; then
    [ -z $APP_NAME ] && { echo "Need to set APP_NAME or BACKUP_PATH"; exit 1; }
