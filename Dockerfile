@@ -19,8 +19,8 @@ RUN cp jq-linux64 /bin/jq
 RUN chmod +x /bin/jq
 
 ## install consul-template
-RUN wget https://releases.hashicorp.com/consul-template/0.18.0-rc2/consul-template_0.18.0-rc2_linux_amd64.zip
-RUN unzip consul-template_0.18.0-rc2_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/consul-template/0.18.1/consul-template_0.18.1_linux_amd64.zip
+RUN unzip consul-template_0.18.1_linux_amd64.zip
 RUN cp consul-template /bin/consul-template
 RUN chmod +x /bin/consul-template
 
