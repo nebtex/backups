@@ -43,5 +43,3 @@ then
 else
   echo "/borg is empty nothing to restore"
 fi
-
-rm -rf /borg/lock.exclusive
