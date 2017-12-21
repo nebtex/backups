@@ -28,9 +28,9 @@ RUN chmod +x /bin/consul-template
 RUN git clone https://github.com/lyda/chkcrontab.git
 RUN cd chkcrontab; python setup.py install 
 
-RUN wget http://downloads.rclone.org/rclone-v1.35-linux-amd64.zip
-RUN unzip rclone-v1.35-linux-amd64.zip
-RUN mv rclone-v1.35-linux-amd64/rclone /bin/rclone
+RUN wget http://downloads.rclone.org/rclone-v1.38-linux-amd64.zip
+RUN unzip rclone-v1.38-linux-amd64.zip
+RUN mv rclone-v1.38-linux-amd64/rclone /bin/rclone
 
 RUN mkdir -p /volumes
 WORKDIR /
